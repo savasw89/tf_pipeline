@@ -101,6 +101,8 @@ job('create_terraform_jobs') {
                 defaultValue env_vars
                 description ''
               }
+              stringParam('GITHUB_PR_NUMBER', '', '')
+              stringParam('GITHUB_PR_SOURCE_BRANCH', '', '')
             }
             definition {
               cps {
