@@ -90,7 +90,16 @@ def fetch_modules() {
 }
 
 def tf_validate() {
-  stage 'validate syntax'
+  stage 'initialize and validate syntax'
+  withEnv(["s3_bucket=$s3_bucket","s3_key=$s3_key"]) {
+    _sh '''\
+      ./bin/terraform init \
+        -backend-config="bucket=${s3_bucket}" \
+        -backend-config="key=${s3_key}/terraform.tfstate" \
+        -backend-config="region=us-east-1" \
+        -backend-config="acl=bucket-owner-full-control"
+    '''.stripIndent()
+  }
   _sh './bin/terraform validate'
 }
 
