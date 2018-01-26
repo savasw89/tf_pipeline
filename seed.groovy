@@ -120,7 +120,6 @@ job('create_terraform_jobs') {
               setup_tf()
               tf_validate()
               fetch_modules()
-              initialize_remote_state()
               tf_plan()
             }
           }
@@ -154,7 +153,6 @@ job('create_terraform_jobs') {
               setup_tf()
               tf_validate()
               fetch_modules()
-              initialize_remote_state()
               tf_plan()
               if (slack_notifications) {
                 notify_about_pending_changes()
@@ -180,7 +178,6 @@ job('create_terraform_jobs') {
                 setup_tf()
                 tf_validate()
                 fetch_modules()
-                initialize_remote_state()
                 tf_plan('-destroy')
                 if (slack_notifications) {
                   notify_about_pending_changes()
@@ -200,7 +197,6 @@ job('create_terraform_jobs') {
               setup_tf()
               tf_validate()
               fetch_modules()
-              initialize_remote_state()
               tf_taint(taint_resource, taint_module)
               tf_plan()
               if (slack_notifications) {
@@ -227,7 +223,6 @@ job('create_terraform_jobs') {
               setup_tf()
               tf_validate()
               fetch_modules()
-              initialize_remote_state()
               tf_untaint(taint_resource, taint_module)
               tf_plan()
               if (slack_notifications) {
