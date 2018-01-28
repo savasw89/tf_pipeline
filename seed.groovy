@@ -159,7 +159,6 @@ job('create_terraform_jobs') {
               if (slack_notifications) {
                 notify_about_pending_changes()
               }
-              wait_for_user_to_apply()
               tf_apply()
             }
           }
